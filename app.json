@@ -1,0 +1,29 @@
+{
+  "name": "Sedthon",
+  "description": "User bot for telegram !",
+  "stack": "container",
+  "repository": "https://github.com/phantomf180/bot",
+  "keywords": [
+    "python",
+    "chatbot",
+    "telegrambot"
+  ],
+  "website": "https://github.com/phantomf180/bot",
+  "env": {
+    "APP_ID": {
+      "description": "ID",
+      "value": "",
+      "required": true
+    },
+    "APP_HASH": {
+      "description": "HASH",
+      "value": "",
+      "required": true
+    },
+    "TERMUX": {
+      "description": "TERMUX",
+      "value": "",
+      "required": true
+    }
+  }
+}
