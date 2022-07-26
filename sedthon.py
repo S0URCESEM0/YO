@@ -51,9 +51,9 @@ hijri_day = tran.translate(str(day), dest="ar")
 hijri = f"{Gregorian.today().to_hijri()} - {hijri_day.text}"
 
 
-APP_ID = 18922496
-APP_HASH = "371d1dc33eccaa19bb0814a27bb98f3c"
-SESSION = '''1ApWapzMBu0Xze-R89RMlJk4fMxE7Z3rWUfnkUNYIAEIaI3K0koaUXUVCvBb6iSjaCBfxpYskVcSPzMbdrys5xL9ALtbu9MYQIRiU_xJlLanbz7GeEdnR37pL7fhgLMlejj78qdxKkoEXFGXFgu8UaFz5st6FCU25ztMwY1MjlqIk1VxnbUqEmUw2BeDF5gi0Fz8JeUmXXdEETQxckw-GI6Gt4Kq0iA_072VQz9rtg-VMolNxib-FW1MpvUqVyOs3nnVb7PE2DMr0t2-gbQqNceu4MygGzPyPCybVVOXLxeuX-PMYYCiS6n8oOst1XYZMThYj0-_DMZSlWpnHli4-jOgnwT6cyz8='''
+APP_ID = os.environ.get("APP_ID")
+APP_HASH = os.environ.get("APP_HASH")
+SESSION = os.environ.get("TERMUX")
 sedthon = TelegramClient(StringSession(SESSION), APP_ID, APP_HASH)
 sedthon.start()
 LOGS = logging.getLogger(__name__)
