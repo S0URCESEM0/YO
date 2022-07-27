@@ -3,9 +3,9 @@ FROM debian:latest
 RUN apt update && apt upgrade -y
 RUN apt install git ffmpeg python3-pip -y
 RUN pip3 install -U pip
-RUN git clone https://github.com/perdark/per-sed/tree/master.git /root/sedthon
+RUN git clone https://github.com/perdark/per-sed/ /root
 #working directory 
-WORKDIR /root/sedthon
+WORKDIR /root
 RUN mkdir /app/
 WORKDIR /app/
 COPY . /app/
