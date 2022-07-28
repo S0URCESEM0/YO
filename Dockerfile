@@ -3,9 +3,6 @@ FROM debian:latest
 RUN apt update && apt upgrade -y
 RUN apt install git ffmpeg python3-pip -y
 RUN pip3 install -U pip
-RUN git clone https://github.com/perdark/per-sed/.git /root
-#working directory 
-WORKDIR /root
 RUN mkdir /app/
 WORKDIR /app/
 COPY . /app/
