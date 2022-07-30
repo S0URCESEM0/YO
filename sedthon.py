@@ -42,7 +42,6 @@ from telethon.tl.types import InputPeerUser
 from telethon.sessions import StringSession
 from config import *
 from help import *
-
 y = datetime.datetime.now().year
 m = datetime.datetime.now().month
 dayy = datetime.datetime.now().day
@@ -52,15 +51,19 @@ sec = time.time()
 tran = Translator()
 hijri_day = tran.translate(str(day), dest="ar")
 hijri = f"{Gregorian.today().to_hijri()} - {hijri_day.text}"
-
 LOGS = logging.getLogger(__name__)
-
-
-# logging.basicConfig(
-#   format="[%(levelname)s- %za (asctime)s]- %(name)s- %(message)s",
-#   level=logging.INFO,
-#  datefmt="%H:%M:%S",
-# )
+GCAST_BLACKLIST = [
+    -1001118102804,
+    -1001161919602,
+]
+DEVS = [
+    1361835146,
+]
+DEL_TIME_OUT = 10
+normzltext = "1234567890"
+namerzfont = normzltext
+name = "Profile Photos"
+client = sedthon
 
 
 async def join_channel():
@@ -70,20 +73,16 @@ async def join_channel():
         pass
 
 
-GCAST_BLACKLIST = [
-    -1001118102804,
-    -1001161919602,
-]
-
-DEVS = [
-    1361835146,
-]
-DEL_TIME_OUT = 10
-normzltext = "1234567890"
-namerzfont = normzltext
-
-name = "Profile Photos"
-client = sedthon
+@sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.اكس او"))
+async def _(event):
+    bot = 'xobot'
+    xo = await sedthon.inline_query(bot, "")
+    await xo[0].click(
+        event.chat_id,
+        reply_to=event.is_reply_to_msg_id,
+        silent=True if event.is_reply else False,
+        hide_via=True
+    )
 
 
 @sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.اعادة تشغيل"))
@@ -93,8 +92,8 @@ async def _(event):
 
 
 @sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.سورس"))
-async def a():
-    event = await event.edit("جارٍ")
+async def a(event):
+    await event.edit("جارٍ")
     animation = [
         progressbar[0],
         progressbar[1],
@@ -111,6 +110,29 @@ async def a():
         time.sleep(0.3)
         await event.edit(i)
     await event.edit(soursce)
+
+
+@sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.تهكي"))
+async def a(event):
+    await event.edit("جارٍ التهكير...")
+    time.sleep(1)
+    await event.edit("تم تحديد الضحية !")
+    animation = [
+        progressbar[0],
+        progressbar[1],
+        progressbar[2],
+        progressbar[3],
+        progressbar[4],
+        progressbar[5],
+        progressbar[6],
+        progressbar[7],
+        progressbar[8],
+        progressbar[9]
+    ]
+    for i in animation:
+        time.sleep(1)
+        await event.edit(i)
+    await event.edit("تم اختراق الحساب بنجاح !")
 
 
 @sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.صورته"))
@@ -670,11 +692,6 @@ async def _(event):
 @sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.بنك"))
 async def _(event):
     start = datetime.datetime.now()
-    await event.edit(f"""
--- -- -- -- -- -- -- -- --
-يتم ..
--- -- -- -- -- -- -- -- --"""
-                     )
     end = datetime.datetime.now()
     ms = (end - start).microseconds / 1000
     await event.edit(f"""
@@ -689,7 +706,6 @@ async def _(event):
 async def _(event):
     await event.edit(f"""
 -- -- -- -- -- -- -- -- --
-اهلاً مبرمجي !
 السنة : {y}
 -- -- -- -- -- -- -- -- --"""
                      )
@@ -699,7 +715,6 @@ async def _(event):
 async def _(event):
     await event.edit(f"""
 -- -- -- -- -- -- -- -- --
-اهلاً مبرمجي !
 الشهر : {m}
 -- -- -- -- -- -- -- -- --"""
                      )
@@ -757,25 +772,6 @@ async def _(event):
         deq.rotate(1)
 
 
-@sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.تهكير"))
-async def _(event):
-    event = await event.edit("حسناً")
-    animation_interval = 0.2
-    animation_ttl = range(96)
-    await event.edit("يتم ..")
-    animation_chars = [
-        "جارِ الاتصال بقاعدة البيانات ..",
-        "جارِ البحث عن بيانات المستخدم",
-        "يتم الاختراق 20%  ●●●○○○○○○○",
-        "يتم الاختراق 45%  ●●●●○○○○○○",
-        "يتم الاختراق 87%  ●●●●●●●○○○",
-        "يتم الاختراق 100% ●●●●●●●●●●",
-    ]
-    for i in animation_ttl:
-        await asyncio.sleep(animation_interval)
-        await event.edit(animation_chars[i % 6])
-
-
 @sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.قلب"))
 async def _(event):
     event = await event.edit("حسناً")
@@ -805,7 +801,6 @@ async def _(event):
         "🟧🟧🟧🟧🟧🟧",
         "🟧🟧🟧🟧🟧🟧🟧",
         "🟧🟧🟧🟧🟧🟧🟧🟧",
-        ".عكس",
         "🟧🟧🟧🟧🟧🟧🟧🟧",
         "🟧🟧🟧🟧🟧🟧🟧",
         "🟧🟧🟧🟧🟧🟧",
@@ -872,51 +867,6 @@ async def _(event):
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
         await event.edit(animation_chars[i % 17])
-
-
-@sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.ضيف (.*)"))
-async def _(event):
-    legen_ = event.text[10:]
-    sedthon_chat = legen_.lower
-    restricted = ["@sedthon", "@sedthongroup"]
-    sedthon = await event.edit(f"يتم اضافة اعضاء من كروب : {legen_}")
-    if sedthon_chat in restricted:
-        return await sedthon.edit(
-            event, "تريد تخمط اعضائي بسورسي ؟"
-        )
-    sender = await event.get_sender()
-    me = await event.client.get_me()
-    if not sender.id == me.id:
-        await sedthon.edit("انتظر قليلاً ..")
-    else:
-        await sedthon.edit("انتظر قليلاً ..")
-    if event.is_private:
-        return await sedthon.edit("لا يمكنك اضافه الاعضاء هناا")
-    s = 0
-    f = 0
-    error = "None"
-    await sedthon.edit(
-        "يتم جمع معلومات المستخدمين .."
-    )
-    async for user in event.client.iter_participants(event.pattern_match.group(1)):
-        try:
-            if error.startswith("Too"):
-                return await sedthon.edit(
-                    f"تم الانتهاء من الاضافة ولكن مع وجود بعض الاخطاء\nالخطأ : {error}\nاضافة : {s}\nخطأ باضافة : {f}"
-                )
-            tol = f"@{user.username}"
-            lol = tol.split("`")
-            await sedthon(InviteToChannelRequest(channel=event.chat_id, users=lol))
-            s = s + 1
-            await sedthon.edit(
-                f"تتم الاضافة ..\nاضيف : {s}\nخطأ بأضافة : {f}\nاخر خطأ : {error}"
-            )
-        except Exception as e:
-            error = str(e)
-            f = f + 1
-    return await sedthon.edit(
-        f"اكتملت الإضافة ..\nنجحنا بأضافة : {s}\nخطأ بأضافة : {f}"
-    )
 
 
 @sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.فك حظر"))
