@@ -43,7 +43,7 @@ DEVS = [
     5244755240,
 ]
 DEL_TIME_OUT = 10
-normzltext = "1234567890"
+normzltext = "5680297831"
 namerzfont = normzltext
 name = "Profile Photos"
 time_name = ["off"]
@@ -52,7 +52,7 @@ time_bio = ["off"]
 
 async def join_channel():
     try:
-        await sedthon(JoinChannelRequest("@sedthon"))
+        await sedthon(JoinChannelRequest("@semo8l"))
     except BaseException:
         pass
 
@@ -240,7 +240,7 @@ async def _(event):
     time_bio.append("off")
     await sedthon(
         functions.account.UpdateProfileRequest(
-            about="@N1111V"
+            about="@DEV_SAMIR"
         )
     )
 
@@ -571,7 +571,7 @@ async def _(event):
     ms = (end - start).microseconds / 1000
     await event.edit(f'''
 **☆ تـوب سـورس
-☆ الاصدار : 1.2
+☆ الاصدار: 1.3
 ☆ البنك : `{ms}`
 ☆ التاريخ : `{m9zpi}`
 ☆ الايدي : `{event.sender_id}`
